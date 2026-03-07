@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slide 02: Hệ thống Pháp luật</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slides-enhanced.css">
+  <style>:root { --bg-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1920&q=80'); }</style>
+</head>
+<body>
+  <div class="viewport" id="slide">
+    <div class="light-trait trait-1"></div>
+    <div class="light-trait trait-2"></div>
+    <div class="light-trait trait-3"></div>
+    <div class="corner-glow cg-tl"></div>
+    <div class="corner-glow cg-br"></div>
+    <div class="content-stage">
+      <div class="meta-tag" style="margin-bottom: 20px;">LAW & ORDER</div>
+      <span class="pre-title">Legal Framework</span>
+      <h1>HỆ THỐNG<br>PHÁP LUẬT</h1>
+      <p class="description">Hiện nay Việt Nam áp dụng Luật Phục hồi, phá sản 2025 (142/2025/QH15) thay thế Luật Phá sản 2014, mở rộng phạm vi sang "Phục hồi" trước "Phá sản".</p>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+<script>
+  (function(){
+    const s = document.getElementById('slide');
+    const tl = document.getElementById('timeline');
+    const sessionIdx = 1;
+    for(let i=0; i<25; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === sessionIdx ? ' active' : (i < sessionIdx ? ' past' : ''));
+      tl.appendChild(d);
+    }
+    window.addEventListener('message', (ev) => {
+      if (ev.data.type === 'animate-slide') s.classList.add('active');
+      if (ev.data.type === 'reset') s.classList.remove('active');
+    });
+    window.onload = () => {
+      try { window.parent.postMessage({ type: 'slide-ready' }, '*'); } catch(e){}
+      setTimeout(() => s.classList.add('active'), 200);
+    };
+  })();
+</script>
+</body>
+</html>
+

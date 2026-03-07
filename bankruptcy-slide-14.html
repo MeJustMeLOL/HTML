@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slide 14: Danh sách Chủ nợ & Tài sản</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slides-enhanced.css">
+  <style>:root { --bg-image: url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1920&q=80'); }</style>
+</head>
+<body>
+  <div class="viewport" id="slide">
+    <div class="light-trait trait-1"></div>
+    <div class="light-trait trait-2"></div>
+    <div class="light-trait trait-3"></div>
+    <div class="corner-glow cg-tl"></div>
+    <div class="corner-glow cg-br"></div>
+    <div class="content-stage">
+      <div class="meta-tag" style="margin-bottom: 20px;">CLAIMS AUDIT</div>
+      <span class="pre-title">Inventory & Verification</span>
+      <h1>DANH SÁCH CHỦ NỢ<br>& TÀI SẢN</h1>
+      <p class="description">Sau khi mở thủ tục, quản tài viên phối hợp với DN xác minh danh sách chủ nợ và tài sản. Các chủ nợ gửi đơn đòi nợ trong thời hạn luật định để bảo vệ quyền lợi.</p>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+<script>
+  (function(){
+    const s = document.getElementById('slide');
+    const tl = document.getElementById('timeline');
+    const sessionIdx = 13;
+    for(let i=0; i<25; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === sessionIdx ? ' active' : (i < sessionIdx ? ' past' : ''));
+      tl.appendChild(d);
+    }
+    window.addEventListener('message', (ev) => {
+      if (ev.data.type === 'animate-slide') s.classList.add('active');
+      if (ev.data.type === 'reset') s.classList.remove('active');
+    });
+    window.onload = () => {
+      try { window.parent.postMessage({ type: 'slide-ready' }, '*'); } catch(e){}
+      setTimeout(() => s.classList.add('active'), 200);
+    };
+  })();
+</script>
+</body>
+</html>
+
+

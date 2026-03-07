@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slide 25: Kết nối & Tài liệu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slides-enhanced.css">
+  <style>:root { --bg-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80'); }</style>
+</head>
+<body>
+  <div class="viewport" id="slide">
+    <div class="light-trait trait-1"></div>
+    <div class="light-trait trait-2"></div>
+    <div class="light-trait trait-3"></div>
+    <div class="corner-glow cg-tl"></div>
+    <div class="corner-glow cg-br"></div>
+    <div class="content-stage">
+      <div class="meta-tag" style="margin-bottom: 20px;">RESOURCES & NETWORK</div>
+      <span style="font-size: 12px; font-weight: 700; color: var(--color-accent); letter-spacing: 0.6em; text-transform: uppercase; margin-bottom: 25px; display: block; text-align: center; opacity: 0.8;">Resources & Connection</span>
+      <h1>KẾT NỐI &<br>TÀI LIỆU</h1>
+      <div class="qr-central">
+        <div class="qr-frame">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x140&data=https://thuvienphapluat.vn" alt="QR Code">
+        </div>
+        <div class="qr-desc">
+          Quét mã QR để truy cập hệ thống dữ liệu số và tải bộ hướng dẫn thi hành <strong>Luật Phá sản 2025</strong>.
+        </div>
+      </div>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+<script>
+  (function(){
+    const s = document.getElementById('slide');
+    const tl = document.getElementById('timeline');
+    const sessionIdx = 24;
+    for(let i=0; i<25; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === sessionIdx ? ' active' : (i < sessionIdx ? ' past' : ''));
+      tl.appendChild(d);
+    }
+    window.addEventListener('message', (ev) => {
+      if (ev.data.type === 'animate-slide') s.classList.add('active');
+      if (ev.data.type === 'reset') s.classList.remove('active');
+    });
+    window.onload = () => {
+      try { window.parent.postMessage({ type: 'slide-ready' }, '*'); } catch(e){}
+      setTimeout(() => s.classList.add('active'), 200);
+    };
+  })();
+</script>
+</body>
+</html>
+
+

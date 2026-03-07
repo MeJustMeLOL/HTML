@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slide 08: Quản tài viên & Doanh nghiệp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slides-enhanced.css">
+  <style>:root { --bg-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1920&q=80'); }</style>
+</head>
+<body>
+  <div class="viewport" id="slide">
+    <div class="light-trait trait-1"></div>
+    <div class="light-trait trait-2"></div>
+    <div class="light-trait trait-3"></div>
+    <div class="corner-glow cg-tl"></div>
+    <div class="corner-glow cg-br"></div>
+    <div class="content-stage">
+      <div class="meta-tag" style="margin-bottom: 20px;">TRUSTEE OFFICE</div>
+      <span class="pre-title">Asset Stewardship</span>
+      <h1>QUẢN TÀI VIÊN<br>& DOANH NGHIỆP</h1>
+      <p class="description">Nghị định 22/2015/NĐ-CP quy định chi tiết về Quản tài viên và DN quản lý tài sản, đóng vai trò giám sát và thực hiện thanh lý tài sản chuyên nghiệp.</p>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+<script>
+  (function(){
+    const s = document.getElementById('slide');
+    const tl = document.getElementById('timeline');
+    const sessionIdx = 7;
+    for(let i=0; i<25; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === sessionIdx ? ' active' : (i < sessionIdx ? ' past' : ''));
+      tl.appendChild(d);
+    }
+    window.addEventListener('message', (ev) => {
+      if (ev.data.type === 'animate-slide') s.classList.add('active');
+      if (ev.data.type === 'reset') s.classList.remove('active');
+    });
+    window.onload = () => {
+      try { window.parent.postMessage({ type: 'slide-ready' }, '*'); } catch(e){}
+      setTimeout(() => s.classList.add('active'), 200);
+    };
+  })();
+</script>
+</body>
+</html>
+
+

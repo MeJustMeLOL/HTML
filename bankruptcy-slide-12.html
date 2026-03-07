@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slide 12: Quyết định Mở thủ tục</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;900&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slides-enhanced.css">
+  <style>:root { --bg-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80'); }</style>
+</head>
+<body>
+  <div class="viewport" id="slide">
+    <div class="light-trait trait-1"></div>
+    <div class="light-trait trait-2"></div>
+    <div class="light-trait trait-3"></div>
+    <div class="corner-glow cg-tl"></div>
+    <div class="corner-glow cg-br"></div>
+    <div class="content-stage">
+      <div class="meta-tag" style="margin-bottom: 20px;">FORMAL OPENING</div>
+      <span class="pre-title">Procedural Step 3</span>
+      <h1>QUYẾT ĐỊNH<br>MỞ THỦ TỤC</h1>
+      <p class="description">Trong vòng 30 ngày kể từ ngày thụ lý đơn, Thẩm phán phải ra quyết định mở hoặc không mở thủ tục phá sản. Quyết định có hiệu lực thi hành ngay.</p>
+    </div>
+    <div class="slide-info">SESSION 12 / 25</div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+<script>
+  (function(){
+    const s = document.getElementById('slide');
+    const tl = document.getElementById('timeline');
+    const sessionIdx = 11;
+    for(let i=0; i<25; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === sessionIdx ? ' active' : (i < sessionIdx ? ' past' : ''));
+      tl.appendChild(d);
+    }
+    window.addEventListener('message', (ev) => {
+      if (ev.data.type === 'animate-slide') s.classList.add('active');
+      if (ev.data.type === 'reset') s.classList.remove('active');
+    });
+    window.onload = () => {
+      initParticles(); animateParticles();
+      try { window.parent.postMessage({ type: 'slide-ready' }, '*'); } catch(e){}
+      setTimeout(() => s.classList.add('active'), 200);
+    };
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function initParticles() {
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      particles = [];
+      for (let i = 0; i < 50; i++) {
+        particles.push({
+          x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 1.5 + 0.5
+        });
+      }
+    }
+    function animateParticles() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = 'rgba(168, 178, 209, 0.3)';
+      particles.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+        if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+  })();
+</script>
+</body>
+</html>
+
+
